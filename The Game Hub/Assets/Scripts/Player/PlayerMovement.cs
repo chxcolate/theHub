@@ -1,32 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float _groundDistance = 0.4f;
+    private Vector3 _velocity;
 
-    public CharacterController controller;
-    public float speed = 12f;
-    public float gravity = -9.81f;
-
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-
-    Vector3 velocity;
-    bool isGrounded;
-    public float jumpForce = 10f;
+    public CharacterController Controller;
+    public float Gravity = -9.81f;
+    public Transform GroundCheck;
+    public LayerMask GroundMask;
+    public float JumpForce = 10f;
+    public float Speed = 12f;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        bool isGrounded = Physics.CheckSphere(GroundCheck.position, _groundDistance, GroundMask);
 
-
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if(isGrounded && velocity.y < 0) {
-            velocity.y = -2f;
+        if (isGrounded && _velocity.y < 0)
+        {
+            _velocity.y = -2f;
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -34,15 +30,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
 
-        
-        controller.Move(move * speed * Time.deltaTime);
+        Controller.Move(move * Speed * Time.deltaTime);
 
-        velocity.y += gravity * Time.deltaTime;
+        _velocity.y += Gravity * Time.deltaTime;
         float jump = Input.GetAxis("Jump");
-        if (jump == 1 && isGrounded) {
-            velocity.y = jumpForce * 2;
+        if (jump == 1 && isGrounded)
+        {
+            _velocity.y = JumpForce * 2;
         }
 
-        controller.Move(velocity * Time.deltaTime);
+        Controller.Move(_velocity * Time.deltaTime);
     }
 }
