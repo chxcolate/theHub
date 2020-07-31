@@ -887,8 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e500613675e864988536fd7d1a14ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBody: {fileID: 1274032077}
-  sensitivity: 450
+  PlayerBody: {fileID: 1274032077}
+  Sensitivity: 100
 --- !u!1 &1120865014
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,15 +979,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932573eb753018d42a06c9930c0607dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1274032078}
-  speed: 8
-  gravity: -9.81
-  groundCheck: {fileID: 1268395374}
-  groundDistance: 0.4
-  groundMask:
+  Controller: {fileID: 1274032078}
+  Gravity: -10.04
+  GroundCheck: {fileID: 1268395374}
+  GroundMask:
     serializedVersion: 2
     m_Bits: 256
-  jumpForce: 3
+  JumpForce: 10
+  Speed: 8
 --- !u!4 &1274032077
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,8 +1287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1114e0603ab15824d96fbef7937d4314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guide: {fileID: 589342055}
-  guideGameObject: {fileID: 589342054}
+  Guide: {fileID: 589342055}
+  GuideGameObject: {fileID: 589342054}
 --- !u!54 &1779091803
 Rigidbody:
   m_ObjectHideFlags: 0
