@@ -1,45 +1,44 @@
 ﻿using UnityEngine;
 
-public class pickup : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
-[Header("Guide Variables")]
-    public Transform guide;
-    public GameObject guideGameObject;
-    bool pickedUpObject;
+    [Header("Guide Variables")]
+    public Transform Guide;
+    public GameObject GuideGameObject;
 
-
-    Quaternion originalRotation;
+    private Quaternion _originalRotation;
+    private bool _pickedUpObject;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if(pickedUpObject) {
+        if (_pickedUpObject)
+        {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
-            originalRotation = transform.rotation;
-            this.transform.rotation = originalRotation;
-            this.transform.position = guide.position;
+            _originalRotation = transform.rotation;
+            transform.rotation = _originalRotation;
+            transform.position = Guide.position;
         }
     }
 
-    void OnMouseOver() {
-        if(Input.GetKeyDown(KeyCode.E)) {
-            if(!pickedUpObject) {
-                
-                //GetComponent<Rigidbody>().detectCollisions = false;
+    public void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!_pickedUpObject)
+            {
                 GetComponent<Rigidbody>().useGravity = false;
-                this.transform.position = guide.position;
-                this.transform.parent = guideGameObject.transform;
-                pickedUpObject = true;
+                transform.position = Guide.position;
+                transform.parent = GuideGameObject.transform;
+                _pickedUpObject = true;
             }
-            
         }
-        if(Input.GetKeyUp(KeyCode.E)) {
-                this.transform.parent = null;
-                GetComponent<Rigidbody>().useGravity = true;
-                //GetComponent<Rigidbody>().detectCollisions = true;
-                originalRotation = transform.rotation;
-                pickedUpObject = false;
-                
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            transform.parent = null;
+            GetComponent<Rigidbody>().useGravity = true;
+            _originalRotation = transform.rotation;
+            _pickedUpObject = false;
         }
     }
 }
